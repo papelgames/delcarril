@@ -11,11 +11,15 @@ app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 csrf = CsrfProtect()
 
+#def generate_session(username, user_id):
+#	session['username'] = username
+#    session['user_id'] = user_id  
+
 
 @app.before_request
 def before_request():
-    if 'username' not in session and request.endpoint in ['index']:
-        return redirect(url_for('index'))
+    if 'username' not in session and request.endpoint in ['comment']:
+        return redirect(url_for('login'))
     elif 'username' in session and request.endpoint in['login','create']:
         return redirect(url_for('index'))
 
@@ -42,7 +46,7 @@ def comment ():
         user_id = session['user_id']
         print user_id
 
-        comment = Comment(user_id = 1,
+        comment = Comment(user_id = user_id,
                           text = comment_form.comment.data)
         
         db.session.add(comment)
@@ -61,9 +65,12 @@ def login():
         username = login_form.username.data
         password = login_form.password.data
         
+
         user = User.query.filter_by(username=username).first()
         if user is not None and user.verify_password(password):
+            #generate_session(user.username, user.user_id)
             session['username'] = username
+            #session['user_id'] = id
             
             success_message = 'Bienvenido {}'.format(username)
             flash(success_message)
