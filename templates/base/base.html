@@ -1,0 +1,29 @@
+<html>
+<head>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.js')}}"></script>
+<title>base</title>
+
+</head>
+<body>
+    <h4>Bienvenidos al curso de Flask</h4>
+    {% with messages = get_flashed_messages()%}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>
+                    {{message}}
+                </ll>
+            {% endfor %}
+            </ul> 
+        {% endif %}
+    {% endwith %}
+    {% block content %}
+  
+    {%endblock%}
+</body>
+<footer>Creado por estandarin </footer>
+</html>

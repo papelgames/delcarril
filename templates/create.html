@@ -1,0 +1,18 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+
+{% from "_macro.html" import render_field %}
+    
+
+<form  method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token ()}}">
+    
+        {{ render_field(formu.username)}}
+        {{ render_field(formu.email)}}
+        {{ render_field(formu.password)}}
+        <button type="submit">Enviar</button>
+        <button type="reset">Borrar</button>
+    </form>
+
+{%endblock%}
