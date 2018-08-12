@@ -1,0 +1,19 @@
+{%extends 'base/base.html'%}
+{%block content%}
+
+    {% if comments %}
+        {% for comment in comments.items %}
+            <p>{{comment.text }}</p>
+        {% endfor %}
+    {% endif %}
+     {% if next_page %}
+         {% if next_page > 0 %}
+             
+             <ul>
+                 <li><a href="{{ url_for('paginas', page = pre_page ) }}">Página anterior</a></li>
+                 <li><a href="{{ url_for('paginas', page = next_page ) }}">Siguiente página</a></li>
+             </ul>
+         
+         {% endif %}
+     {% endif %}
+{%endblock%}

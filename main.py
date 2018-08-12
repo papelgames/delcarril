@@ -15,6 +15,12 @@ def generate_session(username, user_id):
 	session['user_id'] = user_id
 	session['username'] = username
 
+def paginado (pagina_actual, direccion):
+    if pagina_actual <> 1 and direccion == 'menos':
+        return pagina_actual - 1
+    elif direccion == 'mas':
+        return pagina_actual + 1
+
 @app.before_request
 def before_request():
     if 'username' not in session and request.endpoint in ['comment']:
@@ -103,14 +109,18 @@ def logout():
         session.pop('username')
     return redirect(url_for('login'))
 
-@app.route('/reviews', methods=['GET'])
-@app.route('/reviews/<int:page>', methods=['GET'])
-def reviews(page = 1):
+@app.route('/paginas', methods=['GET'])
+@app.route('/paginas/<int:page>', methods=['GET'])
+def paginas(page = 1):
     per_page = 3
+    
+    next_page = paginado(page, 'mas')
+    pre_page = paginado(page, 'menos')
+
     comments = Comment.query.join(User).add_columns(
                                     User.username,
                                     Comment.text).paginate(page,per_page,False)
-    return render_template('reviews.html', comments = comments)
+    return render_template('paginas.html', comments = comments, pre_page = pre_page, next_page = next_page)
 
 
 @app.route('/cookie')
