@@ -103,6 +103,15 @@ def logout():
         session.pop('username')
     return redirect(url_for('login'))
 
+@app.route('/reviews', methods=['GET'])
+@app.route('/reviews/<int:page>', methods=['GET'])
+def reviews(page = 1):
+    per_page = 3
+    comments = Comment.query.join(User).add_columns(
+                                    User.username,
+                                    Comment.text).paginate(page,per_page,False)
+    return render_template('reviews.html', comments = comments)
+
 
 @app.route('/cookie')
 def cookie():

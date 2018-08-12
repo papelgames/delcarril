@@ -1,0 +1,10 @@
+{%extends 'base/base.html'%}
+{%block content%}
+
+    {% if comments %}
+        {% for comment in comments.items %}
+        <p>{{comment.text }}</p>
+        {% endfor %}
+    {% endif %}
+
+{%endblock%}
