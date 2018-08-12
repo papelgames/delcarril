@@ -11,10 +11,9 @@ app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 csrf = CsrfProtect()
 
-#def generate_session(username, user_id):
-#	session['username'] = username
-#    session['user_id'] = user_id  
-
+def generate_session(username, user_id):
+	session['user_id'] = user_id
+	session['username'] = username
 
 @app.before_request
 def before_request():
@@ -68,9 +67,8 @@ def login():
 
         user = User.query.filter_by(username=username).first()
         if user is not None and user.verify_password(password):
-            #generate_session(user.username, user.user_id)
-            session['username'] = username
-            #session['user_id'] = id
+            generate_session(user.username, user.id)
+
             
             success_message = 'Bienvenido {}'.format(username)
             flash(success_message)
@@ -115,7 +113,7 @@ def cookie():
 @app.route('/ajax-login', methods = ['POST'])
 def ajax_login():
     print request.form
-    username = request.form['username']
+    username = request.form['username'];
     response ={'status': 200, 'username': username , 'id': 1}
     return json.dumps(response)
 
