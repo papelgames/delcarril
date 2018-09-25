@@ -77,11 +77,13 @@ def login():
 
             
             success_message = 'Bienvenido {}'.format(username)
+            print success_message
             flash(success_message)
             return redirect( url_for('index'))
 
         else:
             error_message = u'Contraseña o usuario no válida'
+            print error_message
             flash(error_message)
         
     return render_template('login.html', form = login_form)
