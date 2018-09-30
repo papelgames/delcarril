@@ -8,9 +8,9 @@
 <form  method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token ()}}">
     
-        {{ render_field(formu.username)}}
-        {{ render_field(formu.email)}}
-        {{ render_field(formu.password)}}
+        {{ render_field(form.username)}}
+        {{ render_field(form.email)}}
+        {{ render_field(form.password)}}
         <button type="submit">Enviar</button>
         <button type="reset">Borrar</button>
     </form>

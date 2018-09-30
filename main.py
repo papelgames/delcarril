@@ -42,7 +42,7 @@ def index ():
     
     success_message = 'Estas en el index'
     flash(success_message)
-    return render_template('index.html')
+    return render_template('index.html', username= username)
 
 @app.route('/comment', methods = ['GET','POST'])
 def comment ():
@@ -102,7 +102,7 @@ def create():
         success_message = 'Usuario registrado'
         flash(success_message)
        
-    return render_template('create.html', formu = create_form)
+    return render_template('create.html', form = create_form)
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
