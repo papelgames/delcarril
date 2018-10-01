@@ -38,6 +38,8 @@ def index ():
     if 'username' in session:
         username = session['username']
         #user_id = session['user_id']
+    else:
+        username = None
     custome_cookie = request.cookies.get('custom_cookie','indefinida')
     
     success_message = 'Estas en el index'
