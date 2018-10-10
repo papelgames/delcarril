@@ -22,16 +22,16 @@ class LoginForm(Form):
     ])
 
 class CreateForm(Form):
-    username = StringField('Usuario',[
+    username = StringField('',[
         validators.Required(message= 'El usuario no puede estar vacio.'), 
         validators.length(min=1,max= 10,message="El usuario no es valido")
     ])
-    email = EmailField ('Correo electronico',
+    email = EmailField ('',
     [
         validators.Required(message= 'El email no puede estar vacio.'), 
        
     ])
-    password = PasswordField('Contrasenia',[
+    password = PasswordField('',[
         validators.Required(message= 'La password no puede estar vacio.'), 
         validators.length(min=1,max= 66 ,message="El usuario no es valido")
     ])

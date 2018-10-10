@@ -5,14 +5,46 @@
 {% from "_macro.html" import render_field %}
     
 
-<form  method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token ()}}">
-    
-        {{ render_field(form.username)}}
-        {{ render_field(form.email)}}
-        {{ render_field(form.password)}}
-        <button type="submit">Enviar</button>
-        <button type="reset">Borrar</button>
-    </form>
+    <div class="card-body card-block">
+        <form action="" method="post" class="">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token ()}}">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">Usuario</div>
+                    {{ render_field(form.username,class="form-control",id="username3" )}}
+                    
+                    <div class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">Correo Electrónico</div>
+                    {{ render_field(form.email,class="form-control", id="email3")}}
+                    
+                    <div class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">Contraseña</div>
+                    {{ render_field(form.password,class="form-control", id="password3")}}
+                   
+                    <div class="input-group-addon">
+                        <i class="fa fa-asterisk"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions form-group">
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+
 
 {%endblock%}

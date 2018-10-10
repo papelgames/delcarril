@@ -23,7 +23,7 @@ def paginado (pagina_actual, direccion):
 
 @app.before_request
 def before_request():
-    if 'username' not in session and request.endpoint in ['comment']:
+    if 'username' not in session and request.endpoint in ['comment','index']:
         return redirect(url_for('login'))
     elif 'username' in session and request.endpoint in['login','create']:
         return redirect(url_for('index'))
